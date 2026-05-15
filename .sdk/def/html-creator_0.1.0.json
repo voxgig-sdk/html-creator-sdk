@@ -1,0 +1,288 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "HTML Creator API",
+    "description": "The HTML Creator API allows users to create and edit HTML code with an intuitive interface, supporting advanced JavaScript functionality. It is designed for web developers looking for a user-friendly tool that streamlines coding tasks and enhances productivity with features like keyboard shortcuts and code sharing.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://html-creator.en.uptodown.com/android"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.html-creator.com/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/html/create": {
+      "post": {
+        "summary": "Create HTML document",
+        "description": "Creates a new HTML document with the provided code content. Supports HTML, CSS, and JavaScript.",
+        "operationId": "createHtmlDocument",
+        "tags": [
+          "HTML Documents"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "content"
+                ],
+                "properties": {
+                  "content": {
+                    "type": "object",
+                    "properties": {
+                      "html": {
+                        "type": "string",
+                        "description": "HTML content of the document",
+                        "example": "<!DOCTYPE html><html><head><title>My Page</title></head><body><h1>Hello World</h1></body></html>"
+                      },
+                      "css": {
+                        "type": "string",
+                        "description": "CSS styles for the document",
+                        "example": "body { font-family: Arial; }"
+                      },
+                      "javascript": {
+                        "type": "string",
+                        "description": "JavaScript code for the document",
+                        "example": "console.log('Hello World');"
+                      }
+                    }
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the HTML document",
+                    "example": "My HTML Page"
+                  },
+                  "share": {
+                    "type": "boolean",
+                    "description": "Whether to enable sharing for this document",
+                    "default": false
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "properties": {
+                      "author": {
+                        "type": "string",
+                        "description": "Author of the document"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Tags associated with the document"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of the document"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "HTML document created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the created document",
+                      "example": "doc_12345abcde"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the document",
+                      "example": "My HTML Page"
+                    },
+                    "shareUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL for sharing the document (if sharing is enabled)",
+                      "example": "https://html-creator.com/share/doc_12345abcde"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the document was created",
+                      "example": "2023-12-01T10:30:00Z"
+                    },
+                    "content": {
+                      "type": "object",
+                      "properties": {
+                        "html": {
+                          "type": "string",
+                          "description": "HTML content of the document"
+                        },
+                        "css": {
+                          "type": "string",
+                          "description": "CSS content of the document"
+                        },
+                        "javascript": {
+                          "type": "string",
+                          "description": "JavaScript content of the document"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid HTML content provided"
+                    },
+                    "code": {
+                      "type": "string",
+                      "example": "INVALID_INPUT"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Authentication required"
+                    },
+                    "code": {
+                      "type": "string",
+                      "example": "UNAUTHORIZED"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred"
+                    },
+                    "code": {
+                      "type": "string",
+                      "example": "INTERNAL_ERROR"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key for authentication"
+      }
+    },
+    "schemas": {
+      "HtmlDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the document"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the document"
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "html": {
+                "type": "string",
+                "description": "HTML content"
+              },
+              "css": {
+                "type": "string",
+                "description": "CSS content"
+              },
+              "javascript": {
+                "type": "string",
+                "description": "JavaScript content"
+              }
+            }
+          },
+          "shareUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Shareable URL"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "HTML Documents",
+      "description": "Operations related to creating and managing HTML documents"
+    }
+  ]
+}

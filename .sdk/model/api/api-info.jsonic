@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://html-creator.en.uptodown.com/android"
+      }
+      description: "The HTML Creator API allows users to create and edit HTML code with an intuitive interface, supporting advanced JavaScript functionality. It is designed for web developers looking for a user-friendly tool that streamlines coding tasks and enhances productivity with features like keyboard shortcuts and code sharing."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.html-creator.com/v1"
+        }
+      ]
+      title: "HTML Creator API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

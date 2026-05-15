@@ -1,0 +1,53 @@
+# Entity: html_document
+
+main: kit: entity: html_document: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "content"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "share"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "html_document"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/html/create"
+          parts: [
+            "html"
+            "create"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

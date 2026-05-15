@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "html_document": {
+      "HTML_DOCUMENT00": {
+        "content": {},
+        "metadata": {},
+        "share": true,
+        "title": "s2b"
+      },
+      "HTML_DOCUMENT01": {
+        "content": {},
+        "metadata": {},
+        "share": true,
+        "title": "s53"
+      },
+      "HTML_DOCUMENT02": {
+        "content": {},
+        "metadata": {},
+        "share": true,
+        "title": "s7b"
+      }
+    }
+  },
+  "new": {
+    "html_document": {
+      "html_document_ref01": {
+        "content": {},
+        "metadata": {},
+        "share": true,
+        "title": "sa3"
+      }
+    }
+  }
+}

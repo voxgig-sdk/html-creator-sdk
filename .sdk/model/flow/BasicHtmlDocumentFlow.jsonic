@@ -1,0 +1,18 @@
+# BasicHtmlDocumentFlow
+
+main: kit: flow: BasicHtmlDocumentFlow:
+{
+  entity: "html_document",
+  kind: "basic",
+  name: "BasicHtmlDocumentFlow",
+  step: [
+    {
+      input: {
+        ref: "html_document_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicHtmlDocumentFlow"
+}
