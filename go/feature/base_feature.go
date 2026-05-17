@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/html-creator-sdk/core"
+	"github.com/voxgig-sdk/html-creator-sdk/go/core"
 )
 
 type BaseFeature struct {

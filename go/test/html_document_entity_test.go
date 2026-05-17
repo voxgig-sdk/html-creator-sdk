@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/html-creator-sdk"
-	"github.com/voxgig-sdk/html-creator-sdk/core"
+	sdk "github.com/voxgig-sdk/html-creator-sdk/go"
+	"github.com/voxgig-sdk/html-creator-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/html-creator-sdk/go/utility/struct"
 )
 
 func TestHtmlDocumentEntity(t *testing.T) {
