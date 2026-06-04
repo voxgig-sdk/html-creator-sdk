@@ -110,7 +110,6 @@ func html_documentBasicSetup(extra map[string]any) *entityTestSetup {
 		"HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID": idmap,
 		"HTMLCREATOR_TEST_LIVE":      "FALSE",
 		"HTMLCREATOR_TEST_EXPLAIN":   "FALSE",
-		"HTMLCREATOR_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID"])
@@ -121,7 +120,6 @@ func html_documentBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["HTMLCREATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["HTMLCREATOR_APIKEY"],
 			},
 			extra,
 		})

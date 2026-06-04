@@ -16,7 +16,17 @@
           }
         ],
         "title": "HTML Creator API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Create and edit HTML code with JavaScript support through a programmable API",
+        "homepage": "https://freepublicapis.com/html-creator-api",
+        "docs_url": "https://html-creator.en.uptodown.com/android",
+        "license_short": "Not specified by the provider",
+        "license_md": "- No explicit license terms are published for the HTML Creator API.\n- The underlying HTML Creator product (an Android app by Anvaysoft) is distributed as free software with no stated license restrictions.\n- Confirm terms of use with the provider before relying on the API in production.",
+        "about_md": "HTML Creator is an HTML/JavaScript authoring tool listed on [Free Public APIs](https://freepublicapis.com/html-creator-api). The underlying product is an Android app produced by Anvaysoft (see the [product page](https://html-creator.en.uptodown.com/android)) that lets users compose and edit HTML code with JavaScript support, syntax highlighting, undo/redo and code sharing.\n\nWhat you can do via the API:\n\n- Work with HTML documents as a resource (create/edit flows mirroring the app's authoring features).\n- Embed JavaScript inside HTML content during edits.\n\nOperational notes: the catalogue page reports CORS disabled and low overall reliability, with no authentication scheme or rate limits documented by the provider. Endpoint behaviour and stability should be verified before integration.",
+        "entity_desc": {
+          "html_document": "Represents an HTML document that can be created or edited, with support for embedded JavaScript content."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +34,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "html_document": {

@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID': idmap,
     'HTML_CREATOR_TEST_LIVE': 'FALSE',
     'HTML_CREATOR_TEST_EXPLAIN': 'FALSE',
-    'HTML_CREATOR_APIKEY': 'NONE',
   })
 
   idmap = env['HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new HtmlCreatorSDK(merge([
       {
-        apikey: env.HTML_CREATOR_APIKEY,
       },
       extra
     ]))

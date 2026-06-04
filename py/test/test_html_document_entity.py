@@ -87,7 +87,6 @@ def _html_document_basic_setup(extra):
         "HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID": idmap,
         "HTMLCREATOR_TEST_LIVE": "FALSE",
         "HTMLCREATOR_TEST_EXPLAIN": "FALSE",
-        "HTMLCREATOR_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +97,6 @@ def _html_document_basic_setup(extra):
     if env.get("HTMLCREATOR_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HTMLCREATOR_APIKEY"),
             },
             extra or {},
         ])
