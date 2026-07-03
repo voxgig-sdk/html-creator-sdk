@@ -1,19 +1,8 @@
 # HtmlCreator SDK
 
-Create and edit HTML code with JavaScript support through a programmable API
+HTML Creator API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About HTML Creator API
-
-HTML Creator is an HTML/JavaScript authoring tool listed on [Free Public APIs](https://freepublicapis.com/html-creator-api). The underlying product is an Android app produced by Anvaysoft (see the [product page](https://html-creator.en.uptodown.com/android)) that lets users compose and edit HTML code with JavaScript support, syntax highlighting, undo/redo and code sharing.
-
-What you can do via the API:
-
-- Work with HTML documents as a resource (create/edit flows mirroring the app's authoring features).
-- Embed JavaScript inside HTML content during edits.
-
-Operational notes: the catalogue page reports CORS disabled and low overall reliability, with no authentication scheme or rate limits documented by the provider. Endpoint behaviour and stability should be verified before integration.
 
 ## Try it
 
@@ -47,27 +36,28 @@ gem install html-creator-sdk
 luarocks install html-creator-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { HtmlCreatorSDK } from 'html-creator'
 
-const client = new HtmlCreatorSDK({})
+const client = new HtmlCreatorSDK({
+  apikey: process.env.HTML-CREATOR_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -97,7 +87,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **HtmlDocument** | Represents an HTML document that can be created or edited, with support for embedded JavaScript content. | `/html/create` |
+| **HtmlDocument** |  | `/html/create` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -107,9 +97,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from htmlcreator_sdk import HtmlCreatorSDK
 
-client = HtmlCreatorSDK({})
+client = HtmlCreatorSDK({
+    "apikey": os.environ.get("HTML-CREATOR_APIKEY"),
+})
 
 ```
 
@@ -119,7 +112,9 @@ client = HtmlCreatorSDK({})
 <?php
 require_once 'htmlcreator_sdk.php';
 
-$client = new HtmlCreatorSDK([]);
+$client = new HtmlCreatorSDK([
+    "apikey" => getenv("HTML-CREATOR_APIKEY"),
+]);
 
 ```
 
@@ -128,7 +123,9 @@ $client = new HtmlCreatorSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/html-creator-sdk/go"
 
-client := sdk.NewHtmlCreatorSDK(map[string]any{})
+client := sdk.NewHtmlCreatorSDK(map[string]any{
+    "apikey": os.Getenv("HTML-CREATOR_APIKEY"),
+})
 
 ```
 
@@ -137,7 +134,9 @@ client := sdk.NewHtmlCreatorSDK(map[string]any{})
 ```ruby
 require_relative "HtmlCreator_sdk"
 
-client = HtmlCreatorSDK.new({})
+client = HtmlCreatorSDK.new({
+  "apikey" => ENV["HTML-CREATOR_APIKEY"],
+})
 
 ```
 
@@ -146,7 +145,9 @@ client = HtmlCreatorSDK.new({})
 ```lua
 local sdk = require("html-creator_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("HTML-CREATOR_APIKEY"),
+})
 
 ```
 
@@ -166,25 +167,21 @@ const result = await client.HtmlDocument().load({ id: 'test01' })
 ### Python
 
 ```python
-client = HtmlCreatorSDK.test(None, None)
-result, err = client.HtmlDocument(None).load(
-    {"id": "test01"}, None
-)
+client = HtmlCreatorSDK.test()
+result, err = client.HtmlDocument().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = HtmlCreatorSDK::test(null, null);
-[$result, $err] = $client->HtmlDocument(null)->load(
-    ["id" => "test01"], null
-);
+$client = HtmlCreatorSDK::test();
+[$result, $err] = $client->HtmlDocument()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.HtmlDocument(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -193,19 +190,15 @@ result, err := client.HtmlDocument(nil).Load(
 ### Ruby
 
 ```ruby
-client = HtmlCreatorSDK.test(nil, nil)
-result, err = client.HtmlDocument(nil).load(
-  { "id" => "test01" }, nil
-)
+client = HtmlCreatorSDK.test
+result, err = client.HtmlDocument().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:HtmlDocument(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:HtmlDocument():load({ id = "test01" })
 ```
 
 ## How it works
@@ -309,15 +302,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the HTML Creator API
-
-- Upstream: [https://freepublicapis.com/html-creator-api](https://freepublicapis.com/html-creator-api)
-- API docs: [https://html-creator.en.uptodown.com/android](https://html-creator.en.uptodown.com/android)
-
-- No explicit license terms are published for the HTML Creator API.
-- The underlying HTML Creator product (an Android app by Anvaysoft) is distributed as free software with no stated license restrictions.
-- Confirm terms of use with the provider before relying on the API in production.
 
 ---
 
