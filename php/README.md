@@ -10,7 +10,7 @@ The PHP SDK for the HtmlCreator API — an entity-oriented client using PHP conv
 
 ## Install
 ```bash
-composer require voxgig/html-creator-sdk
+composer require voxgig-sdk/html-creator
 ```
 
 

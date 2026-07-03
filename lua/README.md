@@ -10,7 +10,7 @@ The Lua SDK for the HtmlCreator API — an entity-oriented client using Lua conv
 
 ## Install
 ```bash
-luarocks install html-creator-sdk
+luarocks install voxgig-sdk-html-creator
 ```
 
 If the module is not yet published, add the source directory to

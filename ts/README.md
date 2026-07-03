@@ -10,7 +10,7 @@ The TypeScript SDK for the HtmlCreator API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install html-creator
+npm install @voxgig-sdk/html-creator
 ```
 ## Tutorial: your first API call
 

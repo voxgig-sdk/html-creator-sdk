@@ -10,7 +10,7 @@ The Python SDK for the HtmlCreator API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install html-creator-sdk
+pip install voxgig-sdk-html-creator
 ```
 
 Or install from source:

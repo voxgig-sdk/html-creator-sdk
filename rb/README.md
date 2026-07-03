@@ -10,13 +10,13 @@ The Ruby SDK for the HtmlCreator API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install html-creator-sdk
+gem install voxgig-sdk-html-creator
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "html-creator-sdk"
+gem "voxgig-sdk-html-creator"
 ```
 
 Then run:
