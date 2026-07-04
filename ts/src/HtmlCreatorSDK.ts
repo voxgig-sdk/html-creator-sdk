@@ -204,14 +204,7 @@ class HtmlCreatorSDK {
 
 
 
-  _html_document?: HtmlDocumentEntity
-
-  // Idiomatic facade: `client.html_document.list()` / `client.html_document.load({ id })`.
-  get html_document(): HtmlDocumentEntity {
-    return (this._html_document ??= new HtmlDocumentEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.html_document` instead. */
+  // Entity access: `client.HtmlDocument().list()` / `client.HtmlDocument().load({ id })`.
   HtmlDocument(data?: any) {
     const self = this
     return new HtmlDocumentEntity(self,data)

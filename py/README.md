@@ -37,8 +37,8 @@ client = HtmlCreatorSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.htmldocument.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.HtmlDocument().create({"name": "Example"})
 
 ```
 
@@ -85,8 +85,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = HtmlCreatorSDK.test()
 
-result = client.htmldocument.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+htmldocument = client.HtmlDocument().load({"id": "test01"})
+# htmldocument contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -224,7 +225,7 @@ API path: `/html/create`
 
 ### HtmlDocument
 
-Create an instance: `const html_document = client.html_document`
+Create an instance: `html_document = client.HtmlDocument()`
 
 #### Operations
 
@@ -243,9 +244,9 @@ Create an instance: `const html_document = client.html_document`
 
 #### Example: Create
 
-```ts
-const html_document = await client.html_document.create({
-  content: /* `$OBJECT` */,
+```python
+html_document = client.HtmlDocument().create({
+    "content": ...,  # `$OBJECT`
 })
 ```
 
@@ -320,7 +321,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-htmldocument = client.htmldocument
+htmldocument = client.HtmlDocument()
 htmldocument.load({"id": "example_id"})
 
 # htmldocument.data_get() now returns the loaded htmldocument data

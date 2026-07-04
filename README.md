@@ -141,22 +141,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = HtmlCreatorSDK.test()
-const result = await client.htmldocument.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const htmldocument = await client.HtmlDocument().load({ id: 'test01' })
+// htmldocument is a bare HtmlDocument populated with mock data
+console.log(htmldocument)
 ```
 
 ### Python
 
 ```python
 client = HtmlCreatorSDK.test()
-result = client.htmldocument.load({"id": "test01"})
+htmldocument = client.HtmlDocument().load({"id": "test01"})
+print(htmldocument)
 ```
 
 ### PHP
 
 ```php
-$client = HtmlCreatorSDK::test();
-$result = $client->htmldocument()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = HtmlCreatorSDK::test([
+    "entity" => ["htmldocument" => ["test01" => ["id" => "test01"]]],
+]);
+$htmldocument = $client->HtmlDocument()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -171,15 +176,18 @@ result, err := client.HtmlDocument(nil).Load(
 ### Ruby
 
 ```ruby
-client = HtmlCreatorSDK.test
-result = client.htmldocument.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = HtmlCreatorSDK.test({
+  "entity" => { "htmldocument" => { "test01" => { "id" => "test01" } } },
+})
+htmldocument = client.HtmlDocument.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:htmldocument():load({ id = "test01" })
+local result, err = client:HtmlDocument():load({ id = "test01" })
 ```
 
 ## How it works
@@ -227,6 +235,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

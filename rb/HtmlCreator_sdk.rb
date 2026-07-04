@@ -208,13 +208,7 @@ class HtmlCreatorSDK
   end
 
 
-  # Idiomatic facade: client.html_document.list / client.html_document.load({ "id" => ... })
-  def html_document
-    require_relative 'entity/html_document_entity'
-    @html_document ||= HtmlDocumentEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.html_document instead.
+  # Canonical facade: client.HtmlDocument.list / client.HtmlDocument.load({ "id" => ... })
   def HtmlDocument(data = nil)
     require_relative 'entity/html_document_entity'
     HtmlDocumentEntity.new(self, data)

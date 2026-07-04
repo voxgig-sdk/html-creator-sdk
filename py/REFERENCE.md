@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## HtmlDocumentEntity
 
 ```python
-html_document = client.html_document
+html_document = client.HtmlDocument()
 ```
 
 ### Fields
@@ -100,8 +100,8 @@ html_document = client.html_document
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.html_document.create({
-    "content": # `$OBJECT`,
+result = client.HtmlDocument().create({
+    "content": ...,  # `$OBJECT`
 })
 ```
 

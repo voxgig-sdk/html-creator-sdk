@@ -220,25 +220,15 @@ class HtmlCreatorSDK:
         }
 
 
-    @property
-    def html_document(self):
-        """Idiomatic facade: client.html_document.list() / client.html_document.load({"id": ...})."""
-        from entity.html_document_entity import HtmlDocumentEntity
-        cached = getattr(self, "_html_document", None)
-        if cached is None:
-            cached = HtmlDocumentEntity(self, None)
-            self._html_document = cached
-        return cached
-
-    def HtmlDocument(self, data=None):
-        # Deprecated: use client.html_document instead.
+    def HtmlDocument(self, data=None) -> "HtmlDocumentEntity":
+        """Entity factory: client.HtmlDocument().list({}) / client.HtmlDocument().load({"id": ...})."""
         from entity.html_document_entity import HtmlDocumentEntity
         return HtmlDocumentEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "HtmlCreatorSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class HtmlCreatorSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.html_document_entity import HtmlDocumentEntity

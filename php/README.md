@@ -34,8 +34,8 @@ $client = new HtmlCreatorSDK([
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->htmldocument()->create(["name" => "Example"]);
+// create() returns the bare created HtmlDocument record.
+$created = $client->HtmlDocument()->create(["name" => "Example"]);
 
 ```
 
@@ -80,13 +80,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = HtmlCreatorSDK::test();
+$client = HtmlCreatorSDK::test([
+    "entity" => ["htmldocument" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->htmldocument()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$htmldocument = $client->HtmlDocument()->load(["id" => "test01"]);
+print_r($htmldocument);
 ```
 
 ### Use a custom fetch function
@@ -227,7 +231,7 @@ API path: `/html/create`
 
 ### HtmlDocument
 
-Create an instance: `const html_document = client.html_document`
+Create an instance: `$html_document = $client->HtmlDocument();`
 
 #### Operations
 
@@ -246,10 +250,10 @@ Create an instance: `const html_document = client.html_document`
 
 #### Example: Create
 
-```ts
-const html_document = await client.html_document.create({
-  content: /* `$OBJECT` */,
-})
+```php
+$html_document = $client->HtmlDocument()->create([
+    "content" => null, // `$OBJECT`
+]);
 ```
 
 
@@ -324,7 +328,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$htmldocument = $client->htmldocument();
+$htmldocument = $client->HtmlDocument();
 $htmldocument->load(["id" => "example_id"]);
 
 // $htmldocument->dataGet() now returns the loaded htmldocument data

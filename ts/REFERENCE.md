@@ -110,7 +110,7 @@ Alias for `HtmlCreatorSDK.test()`.
 ## HtmlDocumentEntity
 
 ```ts
-const html_document = client.html_document
+const html_document = client.HtmlDocument()
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ const html_document = client.html_document
 Create a new entity with the given data.
 
 ```ts
-const result = await client.html_document.create({
+const result = await client.HtmlDocument().create({
   content: /* `$OBJECT` */,
 })
 ```

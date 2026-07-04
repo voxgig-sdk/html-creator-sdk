@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## HtmlDocumentEntity
 
 ```ruby
-html_document = client.html_document
+html_document = client.HtmlDocument
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ html_document = client.html_document
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.html_document.create({
+result = client.HtmlDocument.create({
   "content" => # `$OBJECT`,
 })
 ```

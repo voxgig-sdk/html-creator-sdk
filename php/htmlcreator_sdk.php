@@ -233,10 +233,10 @@ class HtmlCreatorSDK
 
     private $_html_document = null;
 
-    // Idiomatic facade: $client->html_document()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias HtmlDocument() (PHP method
-    // names are case-insensitive).
-    public function html_document($data = null)
+    // Canonical facade: $client->HtmlDocument()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->html_document()
+    // resolves here too.
+    public function HtmlDocument($data = null)
     {
         require_once __DIR__ . '/entity/html_document_entity.php';
         if ($data === null) {

@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## HtmlDocumentEntity
 
 ```php
-$html_document = $client->html_document();
+$html_document = $client->HtmlDocument();
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ $html_document = $client->html_document();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->html_document()->create([
+$result = $client->HtmlDocument()->create([
   "content" => /* `$OBJECT` */,
 ]);
 ```
