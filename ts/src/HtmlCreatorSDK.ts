@@ -2,6 +2,8 @@
 
 import { HtmlDocumentEntity } from './entity/HtmlDocumentEntity'
 
+export type * from './HtmlCreatorTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class HtmlCreatorSDK {
 
 
 
+  _html_document?: HtmlDocumentEntity
+
+  // Idiomatic facade: `client.html_document.list()` / `client.html_document.load({ id })`.
+  get html_document(): HtmlDocumentEntity {
+    return (this._html_document ??= new HtmlDocumentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.html_document` instead. */
   HtmlDocument(data?: any) {
     const self = this
     return new HtmlDocumentEntity(self,data)

@@ -45,6 +45,7 @@ class HtmlDocumentEntity
     end
   end
 
+  # @return [HtmlDocument, Hash] the current HtmlDocument data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class HtmlDocumentEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of HtmlDocument fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class HtmlDocumentEntity
   
 
   
+  # Create a new HtmlDocument.
+  #
+  # @param reqdata [HtmlDocumentCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [HtmlDocument, Hash] the created HtmlDocument; raises HtmlCreatorError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

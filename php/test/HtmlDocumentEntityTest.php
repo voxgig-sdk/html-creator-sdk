@@ -43,8 +43,7 @@ class HtmlDocumentEntityTest extends TestCase
         $html_document_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.html_document"), "html_document_ref01"));
 
-        [$html_document_ref01_data_result, $err] = $html_document_ref01_ent->create($html_document_ref01_data, null);
-        $this->assertNull($err);
+        $html_document_ref01_data_result = $html_document_ref01_ent->create($html_document_ref01_data, null);
         $html_document_ref01_data = Helpers::to_map($html_document_ref01_data_result);
         $this->assertNotNull($html_document_ref01_data);
 

@@ -9,9 +9,12 @@ The TypeScript SDK for the HtmlCreator API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/html-creator
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/html-creator-sdk/releases](https://github.com/voxgig-sdk/html-creator-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,10 +23,10 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HtmlCreatorSDK } from 'html-creator'
+import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator'
 
 const client = new HtmlCreatorSDK({
-  apikey: process.env.HTML-CREATOR_APIKEY,
+  apikey: process.env.HTML_CREATOR_APIKEY,
 })
 ```
 
@@ -31,7 +34,7 @@ const client = new HtmlCreatorSDK({
 
 ```ts
 // Create
-const created = await client.HtmlDocument().create({
+const created = await client.htmldocument.create({
   name: 'Example',
 })
 
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HtmlCreatorSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.htmldocument.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.htmldocument
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new HtmlCreatorSDK({
 Create a `.env.local` file at the project root:
 
 ```
-HTML-CREATOR_TEST_LIVE=TRUE
-HTML-CREATOR_APIKEY=<your-key>
+HTML_CREATOR_TEST_LIVE=TRUE
+HTML_CREATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -269,7 +272,7 @@ API path: `/html/create`
 
 ### HtmlDocument
 
-Create an instance: `const html_document = client.HtmlDocument()`
+Create an instance: `const html_document = client.html_document`
 
 #### Operations
 
@@ -289,7 +292,7 @@ Create an instance: `const html_document = client.HtmlDocument()`
 #### Example: Create
 
 ```ts
-const html_document = await client.HtmlDocument().create({
+const html_document = await client.html_document.create({
   content: /* `$OBJECT` */,
 })
 ```
@@ -352,7 +355,7 @@ html-creator/
 Import the SDK from the package root:
 
 ```ts
-import { HtmlCreatorSDK } from 'html-creator'
+import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator'
 ```
 
 ### Entity state
@@ -362,11 +365,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const htmldocument = client.htmldocument
+await htmldocument.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// htmldocument.data() now returns the loaded htmldocument data
+// htmldocument.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

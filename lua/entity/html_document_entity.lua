@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata HtmlDocumentCreateData
+---@param ctrl? table
+---@return HtmlDocument
+---@return string? err
 function HtmlDocumentEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

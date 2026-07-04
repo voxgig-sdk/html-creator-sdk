@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  HtmlDocument,
+  HtmlDocumentCreateData,
+} from '../HtmlCreatorTypes'
 
 // TODO: needs Entity superclass
-class HtmlDocumentEntity extends HtmlCreatorEntityBase {
+class HtmlDocumentEntity extends HtmlCreatorEntityBase<HtmlDocument> {
 
   constructor(client: HtmlCreatorSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class HtmlDocumentEntity extends HtmlCreatorEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: HtmlDocumentCreateData, ctrl?: Control): Promise<HtmlDocument> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class HtmlDocumentEntity extends HtmlCreatorEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<HtmlDocument> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

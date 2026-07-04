@@ -44,9 +44,7 @@ class TestHtmlDocumentEntity:
         html_document_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.html_document"), "html_document_ref01"))
 
-        html_document_ref01_data_result, err = html_document_ref01_ent.create(html_document_ref01_data, None)
-        assert err is None
-        html_document_ref01_data = helpers.to_map(html_document_ref01_data_result)
+        html_document_ref01_data = helpers.to_map(html_document_ref01_ent.create(html_document_ref01_data, None))
         assert html_document_ref01_data is not None
 
 

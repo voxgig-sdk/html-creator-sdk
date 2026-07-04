@@ -9,12 +9,9 @@ The Lua SDK for the HtmlCreator API — an entity-oriented client using Lua conv
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-html-creator
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/html-creator-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,7 +29,7 @@ loading a specific record.
 local sdk = require("html-creator_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("HTML-CREATOR_APIKEY"),
+  apikey = os.getenv("HTML_CREATOR_APIKEY"),
 })
 ```
 
@@ -40,7 +37,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:HtmlDocument():create({ name = "Example" })
+local created, _ = client:htmldocument():create({ name = "Example" })
 
 ```
 
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:HtmlCreator():load({ id = "test01" })
+local result, err = client:htmldocument():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-HTML-CREATOR_TEST_LIVE=TRUE
-HTML-CREATOR_APIKEY=<your-key>
+HTML_CREATOR_TEST_LIVE=TRUE
+HTML_CREATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -224,7 +221,7 @@ API path: `/html/create`
 
 ### HtmlDocument
 
-Create an instance: `const html_document = client.HtmlDocument()`
+Create an instance: `const html_document = client.html_document`
 
 #### Operations
 
@@ -244,7 +241,7 @@ Create an instance: `const html_document = client.HtmlDocument()`
 #### Example: Create
 
 ```ts
-const html_document = await client.HtmlDocument().create({
+const html_document = await client.html_document.create({
   content: /* `$OBJECT` */,
 })
 ```
@@ -321,11 +318,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local htmldocument = client:htmldocument()
+htmldocument:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- htmldocument:data_get() now returns the loaded htmldocument data
+-- htmldocument:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -245,6 +245,9 @@ func (sdk *HtmlCreatorSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// HtmlDocument returns a HtmlDocument entity bound to this client.
+// Idiomatic usage: client.HtmlDocument(nil).List(nil, nil) or
+// client.HtmlDocument(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HtmlCreatorSDK) HtmlDocument(data map[string]any) HtmlCreatorEntity {
 	return NewHtmlDocumentEntityFunc(sdk, data)
 }

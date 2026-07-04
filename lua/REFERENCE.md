@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## HtmlDocumentEntity
 
 ```lua
-local html_document = client:HtmlDocument(nil)
+local html_document = client:html_document(nil)
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ local html_document = client:HtmlDocument(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:HtmlDocument():create({
+local result, err = client:html_document():create({
   content = --[[ `$OBJECT` ]],
 })
 ```

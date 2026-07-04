@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:html_document():list() / client:html_document():load({ id = ... })
+function HtmlCreatorSDK:html_document(data)
+  local EntityMod = require("entity.html_document_entity")
+  if data == nil then
+    if self._html_document == nil then
+      self._html_document = EntityMod.new(self, nil)
+    end
+    return self._html_document
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:html_document() instead.
 function HtmlCreatorSDK:HtmlDocument(data)
   local EntityMod = require("entity.html_document_entity")
   return EntityMod.new(self, data)

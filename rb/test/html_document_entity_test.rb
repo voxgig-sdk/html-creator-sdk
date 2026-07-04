@@ -36,8 +36,7 @@ class HtmlDocumentEntityTest < Minitest::Test
     html_document_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.html_document"), "html_document_ref01"))
 
-    html_document_ref01_data_result, err = html_document_ref01_ent.create(html_document_ref01_data, nil)
-    assert_nil err
+    html_document_ref01_data_result = html_document_ref01_ent.create(html_document_ref01_data, nil)
     html_document_ref01_data = Helpers.to_map(html_document_ref01_data_result)
     assert !html_document_ref01_data.nil?
 
