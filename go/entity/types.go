@@ -16,10 +16,9 @@ type HtmlDocument struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// HtmlDocumentCreateData mirrors the html_document fields as an all-optional match
-// filter (Go analog of Partial<HtmlDocument>).
+// HtmlDocumentCreateData is the typed request payload for HtmlDocument.CreateTyped.
 type HtmlDocumentCreateData struct {
-	Content *map[string]any `json:"content,omitempty"`
+	Content map[string]any `json:"content"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	Share *bool `json:"share,omitempty"`
 	Title *string `json:"title,omitempty"`

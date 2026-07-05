@@ -98,10 +98,10 @@ html_document := client.HtmlDocument(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `map[string]any` | Yes |  |
+| `metadata` | `map[string]any` | No |  |
+| `share` | `bool` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -111,7 +111,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.HtmlDocument(nil).Create(map[string]any{
-    "content": /* `$OBJECT` */,
+    "content": /* map[string]any */,
 }, nil)
 ```
 

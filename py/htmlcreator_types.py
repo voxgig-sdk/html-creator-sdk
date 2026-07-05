@@ -26,8 +26,11 @@ class HtmlDocument(HtmlDocumentRequired, total=False):
     title: str
 
 
-class HtmlDocumentCreateData(TypedDict, total=False):
+class HtmlDocumentCreateDataRequired(TypedDict):
     content: dict
+
+
+class HtmlDocumentCreateData(HtmlDocumentCreateDataRequired, total=False):
     metadata: dict
     share: bool
     title: str

@@ -13,6 +13,10 @@
 ---@field title? string
 
 ---@class HtmlDocumentCreateData
+---@field content table
+---@field metadata? table
+---@field share? boolean
+---@field title? string
 
 local M = {}
 

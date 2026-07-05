@@ -221,7 +221,7 @@ class HtmlCreatorSDK:
 
 
     def HtmlDocument(self, data=None) -> "HtmlDocumentEntity":
-        """Entity factory: client.HtmlDocument().list({}) / client.HtmlDocument().load({"id": ...})."""
+        """Entity factory: client.HtmlDocument().list() / client.HtmlDocument().load({"id": ...})."""
         from entity.html_document_entity import HtmlDocumentEntity
         return HtmlDocumentEntity(self, data)
 

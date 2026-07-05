@@ -91,10 +91,10 @@ local html_document = client:HtmlDocument(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `table` | Yes |  |
+| `metadata` | `table` | No |  |
+| `share` | `boolean` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -104,7 +104,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:HtmlDocument():create({
-  content = --[[ `$OBJECT` ]],
+  content = --[[ table ]],
 })
 ```
 

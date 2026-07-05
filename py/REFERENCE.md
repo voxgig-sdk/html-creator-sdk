@@ -8,7 +8,7 @@ Complete API reference for the HtmlCreator Python SDK.
 ### Constructor
 
 ```python
-from html-creator_sdk import HtmlCreatorSDK
+from htmlcreator_sdk import HtmlCreatorSDK
 
 client = HtmlCreatorSDK(options)
 ```
@@ -88,10 +88,10 @@ html_document = client.HtmlDocument()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `dict` | Yes |  |
+| `metadata` | `dict` | No |  |
+| `share` | `bool` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -101,7 +101,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.HtmlDocument().create({
-    "content": ...,  # `$OBJECT`
+    "content": {},  # dict
 })
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for the HtmlCreator Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'html-creator_sdk'
+require_relative 'HtmlCreator_sdk'
 
 client = HtmlCreatorSDK.new(options)
 ```
@@ -94,10 +94,10 @@ html_document = client.HtmlDocument
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `Hash` | Yes |  |
+| `metadata` | `Hash` | No |  |
+| `share` | `Boolean` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -107,7 +107,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.HtmlDocument.create({
-  "content" => # `$OBJECT`,
+  "content" => {}, # Hash
 })
 ```
 

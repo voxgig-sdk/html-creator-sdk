@@ -29,10 +29,10 @@ HtmlDocument = Struct.new(
   keyword_init: true
 )
 
-# Match filter for HtmlDocument#create (any subset of HtmlDocument fields).
+# Request payload for HtmlDocument#create.
 #
 # @!attribute [rw] content
-#   @return [Hash, nil]
+#   @return [Hash]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]

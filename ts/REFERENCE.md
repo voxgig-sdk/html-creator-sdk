@@ -117,10 +117,10 @@ const html_document = client.HtmlDocument()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `Record<string, any>` | Yes |  |
+| `metadata` | `Record<string, any>` | No |  |
+| `share` | `boolean` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -130,7 +130,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.HtmlDocument().create({
-  content: /* `$OBJECT` */,
+  content: /* Record<string, any> */,
 })
 ```
 

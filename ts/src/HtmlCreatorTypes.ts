@@ -12,5 +12,10 @@ export interface HtmlDocument {
   title?: string
 }
 
-export type HtmlDocumentCreateData = Partial<HtmlDocument>
+export interface HtmlDocumentCreateData {
+  content: Record<string, any>
+  metadata?: Record<string, any>
+  share?: boolean
+  title?: string
+}
 

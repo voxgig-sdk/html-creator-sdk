@@ -8,7 +8,7 @@ Complete API reference for the HtmlCreator PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/html-creator_sdk.php';
+require_once __DIR__ . '/htmlcreator_sdk.php';
 
 $client = new HtmlCreatorSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = HtmlCreatorSDK::test();
 
 Create a new `HtmlDocumentEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): HtmlCreatorUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,10 +93,10 @@ $html_document = $client->HtmlDocument();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$OBJECT`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `share` | ``$BOOLEAN`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `content` | `array` | Yes |  |
+| `metadata` | `array` | No |  |
+| `share` | `bool` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -106,25 +106,25 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->HtmlDocument()->create([
-  "content" => /* `$OBJECT` */,
+  "content" => null, // array
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -133,7 +133,7 @@ Set the entity match criteria.
 Create a new `HtmlDocumentEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

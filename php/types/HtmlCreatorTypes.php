@@ -21,10 +21,10 @@ class HtmlDocument
     public ?string $title = null;
 }
 
-/** Match filter for HtmlDocument#create (any subset of HtmlDocument fields). */
+/** Request payload for HtmlDocument#create. */
 class HtmlDocumentCreateData
 {
-    public ?array $content = null;
+    public array $content;
     public ?array $metadata = null;
     public ?bool $share = null;
     public ?string $title = null;
