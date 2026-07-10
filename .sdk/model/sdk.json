@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -203,14 +200,24 @@
           "url": "https://html-creator.en.uptodown.com/android"
         },
         "description": "The HTML Creator API allows users to create and edit HTML code with an intuitive interface, supporting advanced JavaScript functionality. It is designed for web developers looking for a user-friendly tool that streamlines coding tasks and enhances productivity with features like keyboard shortcuts and code sharing.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "X-API-Key",
+          "prefix": "",
+          "scheme": "apiKey",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.html-creator.com/v1"
           }
         ],
+        "summary": "The HTML Creator API allows users to create and edit HTML code with an intuitive interface, supporting advanced JavaScript functionality.",
         "title": "HTML Creator API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://html-creator.com"
       },
       "option": {},
       "target": {
@@ -263,6 +270,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -313,6 +323,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

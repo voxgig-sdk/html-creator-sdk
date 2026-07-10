@@ -91,7 +91,8 @@ same parameters as `Direct()`.
 ## HtmlDocumentEntity
 
 ```go
-html_document := client.HtmlDocument(nil)
+htmlDocument := client.HtmlDocument(nil)
+fmt.Println(htmlDocument.GetName()) // "html_document"
 ```
 
 ### Fields
@@ -111,8 +112,12 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.HtmlDocument(nil).Create(map[string]any{
-    "content": /* map[string]any */,
+    "content": map[string]any{},
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

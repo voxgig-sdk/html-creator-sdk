@@ -324,7 +324,7 @@ Create an instance: `const html_document = client.HtmlDocument()`
 
 ```ts
 const html_document = await client.HtmlDocument().create({
-  content: /* Record<string, any> */,
+  content: {},
 })
 ```
 

@@ -267,7 +267,7 @@ Create an instance: `local html_document = client:HtmlDocument(nil)`
 
 ```lua
 local html_document, err = client:HtmlDocument():create({
-  content = nil, -- table
+  content = {}, -- table
 })
 ```
 

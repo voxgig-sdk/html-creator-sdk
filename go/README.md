@@ -53,7 +53,7 @@ func main() {
         "apikey": os.Getenv("HTML_CREATOR_APIKEY"),
     })
 
-    // Create a htmldocument.
+    // Create a htmlDocument.
     created, err := client.HtmlDocument(nil).Create(map[string]any{"content": map[string]any{}}, nil)
     if err != nil {
         panic(err)
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-htmldocument, err := client.HtmlDocument(nil).Create(
+htmlDocument, err := client.HtmlDocument(nil).Create(
     map[string]any{"content": map[string]any{}}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(htmldocument) // the returned mock data
+fmt.Println(htmlDocument) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -250,9 +250,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    htmldocument, err := client.HtmlDocument(nil).Create(map[string]any{/* fields */}, nil)
+    htmlDocument, err := client.HtmlDocument(nil).Create(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // htmldocument is the returned record
+    // htmlDocument is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -279,7 +279,7 @@ API path: `/html/create`
 
 ### HtmlDocument
 
-Create an instance: `html_document := client.HtmlDocument(nil)`
+Create an instance: `htmlDocument := client.HtmlDocument(nil)`
 
 #### Operations
 
@@ -300,8 +300,12 @@ Create an instance: `html_document := client.HtmlDocument(nil)`
 
 ```go
 result, err := client.HtmlDocument(nil).Create(map[string]any{
-    "content": /* map[string]any */,
+    "content": map[string]any{},
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

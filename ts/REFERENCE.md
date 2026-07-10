@@ -130,7 +130,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.HtmlDocument().create({
-  content: /* Record<string, any> */,
+  content: {},
 })
 ```
 

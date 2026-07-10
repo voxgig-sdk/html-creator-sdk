@@ -16,7 +16,7 @@ def make_config():
         "options": {
             "base": "https://api.html-creator.com/v1",
             "auth": {
-                "prefix": "Bearer",
+                "prefix": "",
             },
             "headers": {
         "content-type": "application/json",
