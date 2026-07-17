@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- HtmlCreator SDK exists test
 
 local sdk = require("html-creator_sdk")
 
