@@ -23,8 +23,8 @@ module HtmlCreatorTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("HTMLCREATOR_TEST_LIVE")
-    override = getenv("HTMLCREATOR_TEST_OVERRIDE")
+    live = getenv("HTML_CREATOR_TEST_LIVE")
+    override = getenv("HTML_CREATOR_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module HtmlCreatorTestRunner
       end
     end
 
-    explain = getenv("HTMLCREATOR_TEST_EXPLAIN")
-    m["HTMLCREATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("HTML_CREATOR_TEST_EXPLAIN")
+    m["HTML_CREATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -38,7 +38,7 @@ const client = new HtmlCreatorSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created HtmlDocument
+// Create — returns the created HtmlDocument ENTITY (.data() for the record)
 const created = await client.HtmlDocument().create({
   content: {},
 })
@@ -120,7 +120,8 @@ Create a mock client for unit testing — no server required:
 const client = HtmlCreatorSDK.test()
 
 const htmldocument = await client.HtmlDocument().create({ content: {} })
-// htmldocument is a bare entity populated with mock response data
+// htmldocument is the entity, populated with mock response data
+// — call htmldocument.data() for the record itself
 console.log(htmldocument)
 ```
 

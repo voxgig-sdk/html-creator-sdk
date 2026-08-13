@@ -217,9 +217,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local html_document, err = client:HtmlDocument():load()
+    local html_document, err = client:HtmlDocument():list()
     if err then error(err) end
-    -- html_document is the loaded record
+    -- html_document is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

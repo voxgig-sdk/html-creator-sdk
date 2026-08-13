@@ -43,8 +43,8 @@ class HtmlCreatorTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('HTMLCREATOR_TEST_LIVE');
-        $override = self::getenv('HTMLCREATOR_TEST_OVERRIDE');
+        $live = self::getenv('HTML_CREATOR_TEST_LIVE');
+        $override = self::getenv('HTML_CREATOR_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class HtmlCreatorTestRunner
             }
         }
 
-        $explain = self::getenv('HTMLCREATOR_TEST_EXPLAIN');
+        $explain = self::getenv('HTML_CREATOR_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['HTMLCREATOR_TEST_EXPLAIN'] = $explain;
+            $m['HTML_CREATOR_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

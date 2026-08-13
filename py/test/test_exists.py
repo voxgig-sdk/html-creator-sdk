@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# HtmlCreator SDK exists test
 
 import pytest
 from htmlcreator_sdk import HtmlCreatorSDK

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import HtmlCreatorControl
-from core.error import HtmlCreatorError
-from core.result import HtmlCreatorResult
-from core.spec import HtmlCreatorSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import HtmlCreatorControl
+from projectname_sdk.core.error import HtmlCreatorError
+from projectname_sdk.core.result import HtmlCreatorResult
+from projectname_sdk.core.spec import HtmlCreatorSpec
 
 
 # True when this SDK was generated with the named feature.

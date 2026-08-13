@@ -36,7 +36,7 @@ $client = new HtmlCreatorSDK([
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created HtmlDocument record.
+// create() returns the ENTITY — call data_get() for the created HtmlDocument record.
 $created = $client->HtmlDocument()->create(["content" => []]);
 
 ```
@@ -49,7 +49,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $htmldocument = $client->HtmlDocument()->create(["content" => {}]);
+    $htmldocument = $client->HtmlDocument()->create(["content" => []]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = HtmlCreatorSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $htmldocument = $client->HtmlDocument()->create(["content" => []]);
 print_r($htmldocument);
 ```
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -363,7 +364,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $htmldocument = $client->HtmlDocument();
-$htmldocument->create(["content" => {}]);
+$htmldocument->create(["content" => []]);
 
 // $htmldocument->data_get() now returns the htmldocument data from the last create
 // $htmldocument->match_get() returns the last match criteria

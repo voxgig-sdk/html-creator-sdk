@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import HtmlCreatorSDK
-from core.error import HtmlCreatorError
-from core.result import HtmlCreatorResult
-from core.response import HtmlCreatorResponse
-from core.spec import HtmlCreatorSpec
-from feature.base_feature import HtmlCreatorBaseFeature
+from projectname_sdk.core.error import HtmlCreatorError
+from projectname_sdk.core.result import HtmlCreatorResult
+from projectname_sdk.core.response import HtmlCreatorResponse
+from projectname_sdk.core.spec import HtmlCreatorSpec
+from projectname_sdk.feature.base_feature import HtmlCreatorBaseFeature
 
 
 def _client():

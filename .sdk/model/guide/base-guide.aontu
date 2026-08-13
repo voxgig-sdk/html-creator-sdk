@@ -8,6 +8,7 @@ guide: {
   entity: html_document: {
     path: "/html/create": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.content`")|top
     }
   }
 

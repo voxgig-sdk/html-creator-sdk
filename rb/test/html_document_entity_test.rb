@@ -26,7 +26,7 @@ class HtmlDocumentEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -37,7 +37,7 @@ class HtmlDocumentEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.html_document"), "html_document_ref01"))
 
     html_document_ref01_data_result = html_document_ref01_ent.create(html_document_ref01_data, nil)
-    html_document_ref01_data = Helpers.to_map(html_document_ref01_data_result)
+    html_document_ref01_data = Helpers.to_map(html_document_ref01_data_result.respond_to?(:data_get) ? html_document_ref01_data_result.data_get : html_document_ref01_data_result)
     assert !html_document_ref01_data.nil?
 
   end
@@ -69,39 +69,39 @@ def html_document_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID"]
+  entid_env_raw = ENV["HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID" => idmap,
-    "HTMLCREATOR_TEST_LIVE" => "FALSE",
-    "HTMLCREATOR_TEST_EXPLAIN" => "FALSE",
-    "HTMLCREATOR_APIKEY" => "NONE",
+    "HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID" => idmap,
+    "HTML_CREATOR_TEST_LIVE" => "FALSE",
+    "HTML_CREATOR_TEST_EXPLAIN" => "FALSE",
+    "HTML_CREATOR_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["HTMLCREATOR_TEST_HTML_DOCUMENT_ENTID"])
+    env["HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["HTMLCREATOR_TEST_LIVE"] == "TRUE"
+  if env["HTML_CREATOR_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["HTMLCREATOR_APIKEY"],
+        "apikey" => env["HTML_CREATOR_APIKEY"],
       },
       extra || {},
     ])
     client = HtmlCreatorSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["HTMLCREATOR_TEST_LIVE"] == "TRUE"
+  live = env["HTML_CREATOR_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["HTMLCREATOR_TEST_EXPLAIN"] == "TRUE",
+    explain: env["HTML_CREATOR_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

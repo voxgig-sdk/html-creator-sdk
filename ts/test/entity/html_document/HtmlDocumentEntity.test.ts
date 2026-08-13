@@ -26,8 +26,8 @@ import {
 describe('HtmlDocumentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when HTMLCREATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('HTMLCREATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when HTML_CREATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('HTML_CREATOR_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = HtmlCreatorSDK.test()
@@ -62,7 +62,7 @@ describe('HtmlDocumentEntity', async () => {
     const html_document_ref01_ent = client.HtmlDocument()
     let html_document_ref01_data = setup.data.new.html_document['html_document_ref01']
 
-    html_document_ref01_data = await html_document_ref01_ent.create(html_document_ref01_data)
+    html_document_ref01_data = (await html_document_ref01_ent.create(html_document_ref01_data)).data()
     assert(null != html_document_ref01_data)
 
 
