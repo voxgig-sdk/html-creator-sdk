@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.html-creator.com/v1',
+    base: "https://api.html-creator.com/v1",
 
     auth: {
       prefix: '',
@@ -59,32 +59,21 @@ class Config {
     "html_document": {
       "fields": [
         {
-          "active": true,
           "name": "content",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "share",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         }
       ],
       "name": "html_document",
@@ -94,7 +83,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -107,11 +95,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.content`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {

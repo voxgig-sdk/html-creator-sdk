@@ -40,7 +40,7 @@ class HtmlCreatorSDK
         $utility = new HtmlCreatorUtility();
         $this->_utility = $utility;
 
-        $config = HtmlCreatorConfig::make_config();
+        $config = HtmlCreatorConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

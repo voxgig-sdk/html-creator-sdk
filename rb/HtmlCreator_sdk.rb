@@ -28,7 +28,7 @@ class HtmlCreatorSDK
     utility = HtmlCreatorUtility.new
     @_utility = utility
 
-    config = HtmlCreatorConfig.make_config
+    config = HtmlCreatorConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
