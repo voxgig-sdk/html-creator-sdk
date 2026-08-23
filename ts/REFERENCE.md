@@ -119,8 +119,8 @@ const html_document = client.HtmlDocument()
 | --- | --- | --- | --- |
 | `content` | `Record<string, any>` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
-| `share` | `boolean` | No |  |
-| `title` | `string` | No |  |
+| `share` | `boolean` | No | Whether to enable sharing for this document |
+| `title` | `string` | No | Title of the HTML document |
 
 ### Operations
 

@@ -6,7 +6,7 @@ The Golang SDK for the HtmlCreator API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.HtmlDocument(nil)` — each with the same small set of operations (`Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -265,8 +265,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"content"` |  |
 | `"metadata"` |  |
-| `"share"` |  |
-| `"title"` |  |
+| `"share"` | Whether to enable sharing for this document |
+| `"title"` | Title of the HTML document |
 
 Operations: Create.
 
@@ -293,8 +293,8 @@ Create an instance: `htmlDocument := client.HtmlDocument(nil)`
 | --- | --- | --- |
 | `content` | `map[string]any` |  |
 | `metadata` | `map[string]any` |  |
-| `share` | `bool` |  |
-| `title` | `string` |  |
+| `share` | `bool` | Whether to enable sharing for this document |
+| `title` | `string` | Title of the HTML document |
 
 #### Example: Create
 

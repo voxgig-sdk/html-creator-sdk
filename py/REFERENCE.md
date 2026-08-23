@@ -90,8 +90,8 @@ html_document = client.HtmlDocument()
 | --- | --- | --- | --- |
 | `content` | `dict` | Yes |  |
 | `metadata` | `dict` | No |  |
-| `share` | `bool` | No |  |
-| `title` | `str` | No |  |
+| `share` | `bool` | No | Whether to enable sharing for this document |
+| `title` | `str` | No | Title of the HTML document |
 
 ### Operations
 

@@ -101,8 +101,8 @@ fmt.Println(htmlDocument.GetName()) // "html_document"
 | --- | --- | --- | --- |
 | `content` | `map[string]any` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
-| `share` | `bool` | No |  |
-| `title` | `string` | No |  |
+| `share` | `bool` | No | Whether to enable sharing for this document |
+| `title` | `string` | No | Title of the HTML document |
 
 ### Operations
 

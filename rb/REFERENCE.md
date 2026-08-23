@@ -96,8 +96,8 @@ html_document = client.HtmlDocument
 | --- | --- | --- | --- |
 | `content` | `Hash` | Yes |  |
 | `metadata` | `Hash` | No |  |
-| `share` | `Boolean` | No |  |
-| `title` | `String` | No |  |
+| `share` | `Boolean` | No | Whether to enable sharing for this document |
+| `title` | `String` | No | Title of the HTML document |
 
 ### Operations
 

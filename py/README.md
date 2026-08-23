@@ -244,8 +244,8 @@ On error, `ok` is `False` and `err` contains the error value.
 | --- | --- |
 | `content` |  |
 | `metadata` |  |
-| `share` |  |
-| `title` |  |
+| `share` | Whether to enable sharing for this document |
+| `title` | Title of the HTML document |
 
 Operations: Create.
 
@@ -272,8 +272,8 @@ Create an instance: `html_document = client.HtmlDocument()`
 | --- | --- | --- |
 | `content` | `dict` |  |
 | `metadata` | `dict` |  |
-| `share` | `bool` |  |
-| `title` | `str` |  |
+| `share` | `bool` | Whether to enable sharing for this document |
+| `title` | `str` | Title of the HTML document |
 
 #### Example: Create
 

@@ -19,6 +19,9 @@ module HtmlCreatorConfig
     {
       "main" => {
         "name" => "HtmlCreator",
+        "slug" => "html-creator",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -53,10 +56,12 @@ module HtmlCreatorConfig
             },
             {
               "name" => "share",
+              "short" => "Whether to enable sharing for this document",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "title",
+              "short" => "Title of the HTML document",
               "type" => "`$STRING`",
             },
           ],

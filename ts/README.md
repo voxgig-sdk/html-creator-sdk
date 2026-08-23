@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -290,8 +290,8 @@ The `prepare()` method returns:
 | --- | --- |
 | `content` |  |
 | `metadata` |  |
-| `share` |  |
-| `title` |  |
+| `share` | Whether to enable sharing for this document |
+| `title` | Title of the HTML document |
 
 Operations: create.
 
@@ -318,8 +318,8 @@ Create an instance: `const html_document = client.HtmlDocument()`
 | --- | --- | --- |
 | `content` | `Record<string, any>` |  |
 | `metadata` | `Record<string, any>` |  |
-| `share` | `boolean` |  |
-| `title` | `string` |  |
+| `share` | `boolean` | Whether to enable sharing for this document |
+| `title` | `string` | Title of the HTML document |
 
 #### Example: Create
 

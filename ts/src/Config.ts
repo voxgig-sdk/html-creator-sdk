@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'HtmlCreator',
+        slug: "html-creator",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -69,10 +80,12 @@ class Config {
         },
         {
           "name": "share",
+          "short": "Whether to enable sharing for this document",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "title",
+          "short": "Title of the HTML document",
           "type": "`$STRING`"
         }
       ],

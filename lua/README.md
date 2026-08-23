@@ -232,8 +232,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `content` |  |
 | `metadata` |  |
-| `share` |  |
-| `title` |  |
+| `share` | Whether to enable sharing for this document |
+| `title` | Title of the HTML document |
 
 Operations: Create.
 
@@ -260,8 +260,8 @@ Create an instance: `local html_document = client:HtmlDocument(nil)`
 | --- | --- | --- |
 | `content` | `table` |  |
 | `metadata` | `table` |  |
-| `share` | `boolean` |  |
-| `title` | `string` |  |
+| `share` | `boolean` | Whether to enable sharing for this document |
+| `title` | `string` | Title of the HTML document |
 
 #### Example: Create
 

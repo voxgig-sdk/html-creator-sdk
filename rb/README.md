@@ -237,8 +237,8 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `content` |  |
 | `metadata` |  |
-| `share` |  |
-| `title` |  |
+| `share` | Whether to enable sharing for this document |
+| `title` | Title of the HTML document |
 
 Operations: Create.
 
@@ -265,8 +265,8 @@ Create an instance: `html_document = client.HtmlDocument`
 | --- | --- | --- |
 | `content` | `Hash` |  |
 | `metadata` | `Hash` |  |
-| `share` | `Boolean` |  |
-| `title` | `String` |  |
+| `share` | `Boolean` | Whether to enable sharing for this document |
+| `title` | `String` | Title of the HTML document |
 
 #### Example: Create
 

@@ -48,12 +48,14 @@
               "active": true,
               "name": "share",
               "req": false,
+              "short": "Whether to enable sharing for this document",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Title of the HTML document",
               "type": "`$STRING`"
             }
           ],

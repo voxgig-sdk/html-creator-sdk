@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "HtmlCreator",
+      slug = "html-creator",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -41,10 +44,12 @@ local function make_config()
           },
           {
             ["name"] = "share",
+            ["short"] = "Whether to enable sharing for this document",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "title",
+            ["short"] = "Title of the HTML document",
             ["type"] = "`$STRING`",
           },
         },

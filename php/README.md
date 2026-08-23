@@ -247,8 +247,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `content` |  |
 | `metadata` |  |
-| `share` |  |
-| `title` |  |
+| `share` | Whether to enable sharing for this document |
+| `title` | Title of the HTML document |
 
 Operations: Create.
 
@@ -275,8 +275,8 @@ Create an instance: `$html_document = $client->HtmlDocument();`
 | --- | --- | --- |
 | `content` | `array` |  |
 | `metadata` | `array` |  |
-| `share` | `bool` |  |
-| `title` | `string` |  |
+| `share` | `bool` | Whether to enable sharing for this document |
+| `title` | `string` | Title of the HTML document |
 
 #### Example: Create
 

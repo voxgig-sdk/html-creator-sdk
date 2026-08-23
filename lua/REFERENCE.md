@@ -93,8 +93,8 @@ local html_document = client:HtmlDocument(nil)
 | --- | --- | --- | --- |
 | `content` | `table` | Yes |  |
 | `metadata` | `table` | No |  |
-| `share` | `boolean` | No |  |
-| `title` | `string` | No |  |
+| `share` | `boolean` | No | Whether to enable sharing for this document |
+| `title` | `string` | No | Title of the HTML document |
 
 ### Operations
 

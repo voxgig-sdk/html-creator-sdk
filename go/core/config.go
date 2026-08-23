@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "HtmlCreator",
+			"slug": "html-creator",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -45,10 +48,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "share",
+						"short": "Whether to enable sharing for this document",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Title of the HTML document",
 						"type": "`$STRING`",
 					},
 				},
