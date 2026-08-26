@@ -42,6 +42,7 @@ class HtmlCreatorConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
