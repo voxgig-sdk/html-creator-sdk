@@ -77,15 +77,23 @@ module HtmlCreatorConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/html/create",
-                  "parts" => [
-                    "html",
-                    "create",
+                  "segments" => [
+                    {
+                      "lit" => "html",
+                    },
+                    {
+                      "lit" => "create",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.content`",
                   },
+                  "parts" => [
+                    "html",
+                    "create",
+                  ],
                 },
               ],
             },

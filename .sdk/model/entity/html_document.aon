@@ -37,9 +37,13 @@ main: kit: entity: html_document: {
         {
           method: "POST"
           orig: "/html/create"
-          parts: [
-            "html"
-            "create"
+          segments: [
+            {
+              lit: "html"
+            }
+            {
+              lit: "create"
+            }
           ]
           transform: {
             req: "`reqdata`"

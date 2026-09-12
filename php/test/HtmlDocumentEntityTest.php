@@ -79,7 +79,7 @@ function html_document_basic_setup($extra)
         "HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID" => $idmap,
         "HTML_CREATOR_TEST_LIVE" => "FALSE",
         "HTML_CREATOR_TEST_EXPLAIN" => "FALSE",
-        "HTML_CREATOR_APIKEY" => "NONE",
+        "HTML_CREATOR_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -90,10 +90,17 @@ function html_document_basic_setup($extra)
 
     if ($env["HTML_CREATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["HTML_CREATOR_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new HtmlCreatorSDK(Helpers::to_map($merged_opts));
     }

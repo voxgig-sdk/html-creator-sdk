@@ -86,7 +86,7 @@ function html_document_basic_setup(extra)
     ["HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID"] = idmap,
     ["HTML_CREATOR_TEST_LIVE"] = "FALSE",
     ["HTML_CREATOR_TEST_EXPLAIN"] = "FALSE",
-    ["HTML_CREATOR_APIKEY"] = "NONE",
+    ["HTML_CREATOR_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -97,6 +97,9 @@ function html_document_basic_setup(extra)
 
   if env["HTML_CREATOR_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["HTML_CREATOR_APIKEY"],
       },

@@ -24,6 +24,7 @@ build = {
     ["html-creator_sdk"] = "html-creator_sdk.lua",
     ["config"] = "config.lua",
     ["config_shared"] = "config_shared.lua",
+    ["config_plugins"] = "config_plugins.lua",
     ["features"] = "features.lua",
     ["feature.base_feature"] = "feature/base_feature.lua",
     ["feature.test_feature"] = "feature/test_feature.lua",
