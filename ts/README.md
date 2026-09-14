@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator'
+import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator-sdk'
 
 const client = new HtmlCreatorSDK({
   apikey: process.env.HTML_CREATOR_APIKEY,
@@ -412,7 +412,7 @@ html-creator/
 Import the SDK from the package root:
 
 ```ts
-import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator'
+import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator-sdk'
 ```
 
 ### Entity state

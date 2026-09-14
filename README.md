@@ -107,7 +107,7 @@ local result, err = client:HtmlDocument():create({ content = {} })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
 | Python | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
 | PHP | `voxgig-sdk/html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/html-creator-sdk/go` | `go get github.com/voxgig-sdk/html-creator-sdk/go@latest` |
@@ -121,7 +121,7 @@ local result, err = client:HtmlDocument():create({ content = {} })
 ### TypeScript
 
 ```ts
-import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator'
+import { HtmlCreatorSDK } from '@voxgig-sdk/html-creator-sdk'
 
 const client = new HtmlCreatorSDK({
   apikey: process.env.HTML_CREATOR_APIKEY,
