@@ -1,12 +1,18 @@
 # HtmlCreator SDK feature factory
 
 from htmlcreator_sdk.feature.base_feature import HtmlCreatorBaseFeature
+from htmlcreator_sdk.feature.ratelimit_feature import HtmlCreatorRatelimitFeature
+from htmlcreator_sdk.feature.retry_feature import HtmlCreatorRetryFeature
 from htmlcreator_sdk.feature.test_feature import HtmlCreatorTestFeature
+from htmlcreator_sdk.feature.timeout_feature import HtmlCreatorTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: HtmlCreatorBaseFeature(),
+    "ratelimit": lambda: HtmlCreatorRatelimitFeature(),
+    "retry": lambda: HtmlCreatorRetryFeature(),
     "test": lambda: HtmlCreatorTestFeature(),
+    "timeout": lambda: HtmlCreatorTimeoutFeature(),
 }
 
 

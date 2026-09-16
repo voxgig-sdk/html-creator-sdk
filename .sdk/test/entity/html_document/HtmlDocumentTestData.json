@@ -33,5 +33,207 @@
         "title": "sa3"
       }
     }
+  },
+  "requests": {
+    "POST /html/create": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createHtmlDocument",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "properties": {
+                      "css": {
+                        "description": "CSS styles for the document",
+                        "example": "body { font-family: Arial; }",
+                        "type": "string"
+                      },
+                      "html": {
+                        "description": "HTML content of the document",
+                        "example": "<!DOCTYPE html><html><head><title>My Page</title></head><body><h1>Hello World</h1></body></html>",
+                        "type": "string"
+                      },
+                      "javascript": {
+                        "description": "JavaScript code for the document",
+                        "example": "console.log('Hello World');",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "metadata": {
+                    "properties": {
+                      "author": {
+                        "description": "Author of the document",
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "Description of the document",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "description": "Tags associated with the document",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "share": {
+                    "default": false,
+                    "description": "Whether to enable sharing for this document",
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "description": "Title of the HTML document",
+                    "example": "My HTML Page",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "content": {
+                      "properties": {
+                        "css": {
+                          "description": "CSS content of the document",
+                          "type": "string"
+                        },
+                        "html": {
+                          "description": "HTML content of the document",
+                          "type": "string"
+                        },
+                        "javascript": {
+                          "description": "JavaScript content of the document",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp when the document was created",
+                      "example": "2023-12-01T10:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the created document",
+                      "example": "doc_12345abcde",
+                      "type": "string"
+                    },
+                    "shareUrl": {
+                      "description": "URL for sharing the document (if sharing is enabled)",
+                      "example": "https://html-creator.com/share/doc_12345abcde",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "Title of the document",
+                      "example": "My HTML Page",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "HTML document created successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "example": "INVALID_INPUT",
+                      "type": "string"
+                    },
+                    "error": {
+                      "example": "Invalid HTML content provided",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - Invalid input data"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "example": "UNAUTHORIZED",
+                      "type": "string"
+                    },
+                    "error": {
+                      "example": "Authentication required",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "example": "INTERNAL_ERROR",
+                      "type": "string"
+                    },
+                    "error": {
+                      "example": "An unexpected error occurred",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authentication",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

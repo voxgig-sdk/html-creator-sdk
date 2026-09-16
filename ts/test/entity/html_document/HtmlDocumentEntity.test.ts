@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { HtmlCreatorSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('HtmlDocumentEntity', async () => {
 
     const live = 'TRUE' === process.env.HTML_CREATOR_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'html_document.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'html_document.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"content","req":true,"type":"`$OBJECT`","index$":0},{"active":true,"name":"metadata","req":false,"type":"`$OBJECT`","index$":1},{"active":true,"name":"share","req":false,"short":"Whether to enable sharing for this document","type":"`$BOOLEAN`","index$":2},{"active":true,"name":"title","req":false,"short":"Title of the HTML document","type":"`$STRING`","index$":3}],"name":"html_document","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /html/create","json":"{\"operationId\":\"createHtmlDocument\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"properties\":{\"css\":{\"description\":\"CSS styles for the document\",\"example\":\"body { font-family: Arial; }\",\"type\":\"string\"},\"html\":{\"description\":\"HTML content of the document\",\"example\":\"<!DOCTYPE html><html><head><title>My Page</title></head><body><h1>Hello World</h1></body></html>\",\"type\":\"string\"},\"javascript\":{\"description\":\"JavaScript code for the document\",\"example\":\"console.log('Hello World');\",\"type\":\"string\"}},\"type\":\"object\"},\"metadata\":{\"properties\":{\"author\":{\"description\":\"Author of the document\",\"type\":\"string\"},\"description\":{\"description\":\"Description of the document\",\"type\":\"string\"},\"tags\":{\"description\":\"Tags associated with the document\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"share\":{\"default\":false,\"description\":\"Whether to enable sharing for this document\",\"type\":\"boolean\"},\"title\":{\"description\":\"Title of the HTML document\",\"example\":\"My HTML Page\",\"type\":\"string\"}},\"required\":[\"content\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"properties\":{\"css\":{\"description\":\"CSS content of the document\",\"type\":\"string\"},\"html\":{\"description\":\"HTML content of the document\",\"type\":\"string\"},\"javascript\":{\"description\":\"JavaScript content of the document\",\"type\":\"string\"}},\"type\":\"object\"},\"createdAt\":{\"description\":\"Timestamp when the document was created\",\"example\":\"2023-12-01T10:30:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the created document\",\"example\":\"doc_12345abcde\",\"type\":\"string\"},\"shareUrl\":{\"description\":\"URL for sharing the document (if sharing is enabled)\",\"example\":\"https://html-creator.com/share/doc_12345abcde\",\"format\":\"uri\",\"type\":\"string\"},\"title\":{\"description\":\"Title of the document\",\"example\":\"My HTML Page\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"HTML document created successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"example\":\"INVALID_INPUT\",\"type\":\"string\"},\"error\":{\"example\":\"Invalid HTML content provided\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid input data\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"example\":\"UNAUTHORIZED\",\"type\":\"string\"},\"error\":{\"example\":\"Authentication required\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"example\":\"INTERNAL_ERROR\",\"type\":\"string\"},\"error\":{\"example\":\"An unexpected error occurred\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authentication\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/html/create","segments":[{"lit":"html"},{"lit":"create"}],"select":{},"transform":{"req":"`reqdata`","res":"`body.content`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"html_document","name__orig":"html_document","Name":"HtmlDocument","name_":"html_document","name-":"html-document","NAME":"HTML_DOCUMENT","index$":0}, {"active":true,"entity":"html_document","key$":"BasicHtmlDocumentFlow","kind":"basic","name":"BasicHtmlDocumentFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"html_document_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'HtmlDocument')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID': idmap,
     'HTML_CREATOR_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.HTML_CREATOR_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['HTML_CREATOR_TEST_HTML_DOCUMENT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new HtmlCreatorSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -140,7 +138,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -153,7 +152,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.HTML_CREATOR_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
