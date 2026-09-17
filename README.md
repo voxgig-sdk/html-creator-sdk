@@ -107,12 +107,12 @@ local result, err = client:HtmlDocument():create({ content = {} })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
-| Python | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
-| PHP | `voxgig-sdk/html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| Python | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| PHP | `voxgig-sdk/html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/html-creator-sdk/go` | `go get github.com/voxgig-sdk/html-creator-sdk/go@latest` |
-| Ruby | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
-| Lua | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/releases) |
+| Ruby | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| Lua | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/html-creator-sdk/go-cli` | `go install github.com/voxgig-sdk/html-creator-sdk/go-cli/cmd/html-creator@latest` |
 | Go MCP server | `github.com/voxgig-sdk/html-creator-sdk/go-mcp` | `go get github.com/voxgig-sdk/html-creator-sdk/go-mcp@latest` |
 
