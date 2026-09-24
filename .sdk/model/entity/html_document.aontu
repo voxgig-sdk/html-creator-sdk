@@ -1,0 +1,68 @@
+# Entity: html_document
+
+main: kit: entity: html_document: {
+
+  alias: field: {}
+
+  fields: {
+    content: {
+      h: "Content"
+      n: "content"
+      r: true
+      t: "`$OBJECT`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      t: "`$OBJECT`"
+    }
+    share: {
+      h: "Share"
+      n: "share"
+      r: false
+      sh: "Whether to enable sharing for this document"
+      t: "`$BOOLEAN`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Title of the HTML document"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "html_document"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /html/create"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/html/create"
+          s: [
+            {
+              lit: "html"
+            }
+            {
+              lit: "create"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.content`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -103,22 +103,26 @@ module HtmlCreatorConfig
           "fields" => [
             {
               "name" => "content",
-              "req" => true,
+              "title" => "Content",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "metadata",
+              "title" => "Metadata",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "share",
-              "short" => "Whether to enable sharing for this document",
+              "title" => "Share",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether to enable sharing for this document",
             },
             {
               "name" => "title",
-              "short" => "Title of the HTML document",
+              "title" => "Title",
               "type" => "`$STRING`",
+              "short" => "Title of the HTML document",
             },
           ],
           "name" => "html_document",
@@ -128,7 +132,6 @@ module HtmlCreatorConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/html/create",
@@ -140,15 +143,17 @@ module HtmlCreatorConfig
                       "lit" => "create",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.content`",
-                  },
                   "parts" => [
                     "html",
                     "create",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.content`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },

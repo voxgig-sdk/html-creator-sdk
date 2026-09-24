@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -144,22 +137,26 @@ class Config {
       "fields": [
         {
           "name": "content",
-          "req": true,
-          "type": "`$OBJECT`"
+          "title": "Content",
+          "type": "`$OBJECT`",
+          "req": true
         },
         {
           "name": "metadata",
+          "title": "Metadata",
           "type": "`$OBJECT`"
         },
         {
           "name": "share",
-          "short": "Whether to enable sharing for this document",
-          "type": "`$BOOLEAN`"
+          "title": "Share",
+          "type": "`$BOOLEAN`",
+          "short": "Whether to enable sharing for this document"
         },
         {
           "name": "title",
-          "short": "Title of the HTML document",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Title of the HTML document"
         }
       ],
       "name": "html_document",
@@ -169,7 +166,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/html/create",
@@ -181,15 +177,17 @@ class Config {
                   "lit": "create"
                 }
               ],
-              "select": {},
+              "parts": [
+                "html",
+                "create"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.content`"
               },
-              "parts": [
-                "html",
-                "create"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

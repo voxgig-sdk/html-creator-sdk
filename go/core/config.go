@@ -95,22 +95,26 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "content",
-						"req": true,
+						"title": "Content",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "metadata",
+						"title": "Metadata",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "share",
-						"short": "Whether to enable sharing for this document",
+						"title": "Share",
 						"type": "`$BOOLEAN`",
+						"short": "Whether to enable sharing for this document",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Title of the HTML document",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Title of the HTML document",
 					},
 				},
 				"name": "html_document",
@@ -120,7 +124,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/html/create",
@@ -132,15 +135,17 @@ func MakeConfig() map[string]any {
 										"lit": "create",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.content`",
-								},
 								"parts": []any{
 									"html",
 									"create",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.content`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
