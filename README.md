@@ -108,11 +108,11 @@ local result, err = client:HtmlDocument():create({ content = {} })
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
-| Python | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
-| PHP | `voxgig-sdk/html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| Python | `voxgig-sdk-html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| PHP | `voxgig-sdk/html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/html-creator-sdk/go` | `go get github.com/voxgig-sdk/html-creator-sdk/go@latest` |
-| Ruby | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
-| Lua | `voxgig-sdk-html-creator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| Ruby | `voxgig-sdk-html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
+| Lua | `voxgig-sdk-html-creator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/html-creator-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/html-creator-sdk/go-cli` | `go install github.com/voxgig-sdk/html-creator-sdk/go-cli/cmd/html-creator@latest` |
 | Go MCP server | `github.com/voxgig-sdk/html-creator-sdk/go-mcp` | `go get github.com/voxgig-sdk/html-creator-sdk/go-mcp@latest` |
 
@@ -330,10 +330,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
