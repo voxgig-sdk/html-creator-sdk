@@ -56,7 +56,7 @@ main: kit: entity: html_document: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.content`"
+            res: "`body`"
           }
         }
       ]

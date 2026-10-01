@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 HtmlCreatorUtility::setRegistrar(function (HtmlCreatorUtility $u): void {
     $u->clean = [HtmlCreatorClean::class, 'call'];
+    $u->clean_add = [HtmlCreatorClean::class, 'add'];
+    $u->clean_explain = [HtmlCreatorDone::class, 'clean_explain'];
     $u->done = [HtmlCreatorDone::class, 'call'];
     $u->make_error = [HtmlCreatorMakeError::class, 'call'];
     $u->feature_add = [HtmlCreatorFeatureAdd::class, 'call'];

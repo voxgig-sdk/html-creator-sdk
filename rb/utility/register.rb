@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 HtmlCreatorUtility.registrar = ->(u) {
   u.clean = HtmlCreatorUtilities::Clean
+  u.clean_add = HtmlCreatorUtilities::CleanAdd
+  u.clean_explain = HtmlCreatorUtilities::CleanExplain
   u.done = HtmlCreatorUtilities::Done
   u.make_error = HtmlCreatorUtilities::MakeError
   u.feature_add = HtmlCreatorUtilities::FeatureAdd
