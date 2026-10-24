@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { HtmlCreatorSDK, BaseFeature, stdutil } from '../../..'
+import { HtmlCreatorSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('HtmlDocumentEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = HtmlCreatorSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.HtmlDocument().create({"content":"x","share":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.HTML_CREATOR_TEST_LIVE
@@ -51,7 +63,7 @@ describe('HtmlDocumentEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"content":{"a":true,"h":"Content","n":"content","r":true,"t":"`$OBJECT`","key$":"content","index$":0},"metadata":{"a":true,"h":"Metadata","n":"metadata","r":false,"t":"`$OBJECT`","key$":"metadata","index$":1},"share":{"a":true,"h":"Share","n":"share","r":false,"sh":"Whether to enable sharing for this document","t":"`$BOOLEAN`","key$":"share","index$":2},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"Title of the HTML document","t":"`$STRING`","key$":"title","index$":3}},"name":"html_document","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /html/create","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/html/create","q":{},"r":{},"s":[{"lit":"html"},{"lit":"create"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"html_document","name__orig":"html_document","Name":"HtmlDocument","name_":"html_document","name-":"html-document","NAME":"HTML_DOCUMENT","index$":0}, {"active":true,"entity":"html_document","key$":"BasicHtmlDocumentFlow","kind":"basic","name":"BasicHtmlDocumentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"html_document_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'HtmlDocument', {"POST /html/create":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["content"],"properties":{"content":{"type":"object","properties":{"html":{"type":"string","description":"HTML content of the document","example":"<!DOCTYPE html><html><head><title>My Page</title></head><body><h1>Hello World</h1></body></html>"},"css":{"type":"string","description":"CSS styles for the document","example":"body { font-family: Arial; }"},"javascript":{"type":"string","description":"JavaScript code for the document","example":"console.log('Hello World');"}},"key$":"content"},"title":{"type":"string","description":"Title of the HTML document","example":"My HTML Page","key$":"title"},"share":{"type":"boolean","description":"Whether to enable sharing for this document","default":false,"key$":"share"},"metadata":{"type":"object","properties":{"author":{"type":"string","description":"Author of the document"},"tags":{"type":"array","items":{"type":"string"},"description":"Tags associated with the document"},"description":{"type":"string","description":"Description of the document"}},"key$":"metadata"}},"index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"content":{"a":true,"h":"Content","n":"content","r":true,"t":"`$OBJECT`","key$":"content","index$":0},"metadata":{"a":true,"h":"Metadata","n":"metadata","r":false,"t":"`$OBJECT`","key$":"metadata","index$":1},"share":{"a":true,"h":"Share","n":"share","r":false,"sh":"Whether to enable sharing for this document","t":"`$BOOLEAN`","key$":"share","index$":2},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"Title of the HTML document","t":"`$STRING`","key$":"title","index$":3}},"name":"html_document","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["content","metadata","share","title"],"co":{"id":"POST /html/create","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/html/create","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"html"},{"lit":"create"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"html_document","name__orig":"html_document","Name":"HtmlDocument","name_":"html_document","name-":"html-document","NAME":"HTML_DOCUMENT","index$":0}, {"active":true,"entity":"html_document","key$":"BasicHtmlDocumentFlow","kind":"basic","name":"BasicHtmlDocumentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"html_document_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'HtmlDocument', {"POST /html/create":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["content"],"properties":{"content":{"type":"object","properties":{"html":{"type":"string","description":"HTML content of the document","example":"<!DOCTYPE html><html><head><title>My Page</title></head><body><h1>Hello World</h1></body></html>"},"css":{"type":"string","description":"CSS styles for the document","example":"body { font-family: Arial; }"},"javascript":{"type":"string","description":"JavaScript code for the document","example":"console.log('Hello World');"}},"key$":"content"},"title":{"type":"string","description":"Title of the HTML document","example":"My HTML Page","key$":"title"},"share":{"type":"boolean","description":"Whether to enable sharing for this document","default":false,"key$":"share"},"metadata":{"type":"object","properties":{"author":{"type":"string","description":"Author of the document"},"tags":{"type":"array","items":{"type":"string"},"description":"Tags associated with the document"},"description":{"type":"string","description":"Description of the document"}},"key$":"metadata"}},"index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('HtmlDocumentEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options
